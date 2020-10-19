@@ -1,5 +1,4 @@
-# action.yml
-name: 'Blackduck-scanner report generator'
+name: 'Blackduck-scanner-report-generator'
 description: 'It authenticate and download the blackduck scan report'
 inputs:
   access-token:
