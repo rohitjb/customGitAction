@@ -1,5 +1,10 @@
-#!/bin/sh -l
+#!/bin/sh
+BASE_URL='https://blackduck.platform-services.services-platdev.x.gcpnp.anz'
+AUTHENTICATE='api/tokens/authenticate'
 
-echo "Hello $1"
-time=$(date)
-echo "::set-output name=time::$time"
+TOKEN="token $1"
+COMPONENT_JSON_URL="$2"
+
+token=$(curl --request POST --url ${BASE_URL}/${AUTHENTICATE} --header "Authorization: $TOKEN" | jq -r '.bearerToken')
+curl --request GET --url ${COMPONENT_JSON_URL} --header "Authorization: Bearer $token" | tee report.json
+

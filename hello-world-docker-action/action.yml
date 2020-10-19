@@ -1,16 +1,21 @@
 # action.yml
-name: 'Hello World'
-description: 'Greet someone and record the time'
+name: 'Blackduck-scanner report generator'
+description: 'It authenticate and download the blackduck scan report'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  access-token:
+    description: 'acess token used to authenticate the blackduck'
     required: true
-    default: 'World'
+    default: ''
+    url:
+      description: 'This is the url which will provide the blackduck scan report'
+      required: true
+      default: ''
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  report:
+    description: 'This is the balckduck-scan report in json format'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.access-token }}
+    - ${{ inputs.url }}
