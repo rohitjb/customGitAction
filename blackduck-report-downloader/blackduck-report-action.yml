@@ -1,0 +1,15 @@
+name: 'blackduck report downloader'
+description: 'it will download the data from the blackduck url'
+inputs:
+  token:  # id of input
+    description: 'It will authenticate and get the bearer token which would be helpful in all the api requests'
+    required: true
+outputs:
+  report: 
+    description: "This will give us report in json format"
+    value: ${{ steps.random-number-generator.outputs.random-id }}
+runs:
+  using: "composite"
+  steps: 
+    - run: ${{ github.action_path }}/blackduck-report-downloader.sh
+      shell: bash
